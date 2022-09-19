@@ -1,0 +1,46 @@
+﻿@page
+@using SpendingSite.Db
+@using System.Globalization
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Today Spendings</h1>
+</div>
+
+<div class="container">
+    <div class="spending-table-holder">
+        <div class="spending-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Spend</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        decimal total = 0;
+                        int count = 0;
+                        foreach (var r in new SpendingDao().GetTodaySpendings())
+                        {
+                            <tr><td>@r.SpendKindName</td><td></td></tr>
+                            foreach (var i in r.Items)
+                            {
+                                total += i.Amount;
+                                count++;
+                                <tr><td> &#x2218; @i.Note</td><td>@i.Amount &#x20bd;</td></tr>
+                            }
+                        }
+                        if (count > 1)
+                        {
+                            <tr><td><span class="total-text">Total</span></td><td>@total &#x20bd;</td></tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,145 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Lab Grotesque', -apple-system, BlinkMacSystemFont, Arial, 'Liberation Sans', 'Nimbus Sans L', sans-serif;
+    margin-bottom: 60px;
+    background: #f3f3f3;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+select, input {
+    height: 32px;
+}
+
+.spending-table th, .spending-table td {
+    border: 1px solid black;
+    padding: 4px;
+}
+
+.spending-table-holder {
+    display: block;
+    text-align: center;
+}
+
+.spending-table {
+    display: inline-block;
+    text-align: initial;
+    margin: auto;
+    width: auto;
+    padding: 25px;
+    background-color: white;
+    border: 1px solid #aaa;
+}
+
+@media (max-width: 768px) {
+    .spending-table {
+        display: block;
+        padding: 10px;
+    }
+
+    .spending-table table {
+        width: 100%;
+    }
+}
+
+.spending-table th {
+    border: 0;
+}
+
+.spending-table td {
+    color: #303030;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: #c0c0c0;
+}
+
+.spending-table td:last-child {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.text-danger {
+    color: #6d2323;
+}
+
+.add-spending-table td {
+    padding: 4px;
+}
+
+.add-spending-table {
+    text-align: center;
+}
+
+.add-spending-table > div {
+    display: inline-block;
+    border-radius: 1px;
+    box-shadow: #888 0px 0px 0px 1px;
+    padding: 25px 10px;
+    background: white;
+}
+
+@media (max-width: 768px) {
+    .add-spending-table > div {
+        padding: 10px 5px;
+    }
+}
+
+.add-spending-table td:first-child {
+    text-align: right;
+}
+
+.add-spending-table select, .add-spending-table input {
+    width: 97%;
+}
+
+.add-spending-table input[type=submit] {
+    background: rgb(28, 126, 223);
+    color: rgb(255, 255, 255);
+    box-shadow: rgb(28, 126, 223) 0px 0px 0px 1px;
+    border: 0;
+    border-radius: 1px;
+    padding: 8px 15px;
+    vertical-align:central;
+    height: auto;
+}
+
+.add-spending-table tr:last-child td {
+    padding-top: 20px;
+}
+
+.error-holder {
+    width: 100%;
+    text-align: left;
+}
+
+.month-dropdown {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.total-text {
+    font-weight: 600;
+}

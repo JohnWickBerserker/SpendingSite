@@ -1,0 +1,52 @@
+﻿@page
+@using SpendingSite.Db
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@model SpendingSite.Pages.AddSpendingModel
+@{
+    ViewData["Title"] = "Add spending page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Add Spending</h1>
+</div>
+
+<form method="post">
+    <div class="add-spending-table">
+        <div>
+            <table>
+                <tr>
+                    <td>Amount: </td>
+                    <td><input type="text" id="txtAmount" name="Amount" autocomplete="off"/></td>
+                </tr>
+                <tr>
+                    <td>Spend Kind: </td>
+                    <td>
+                        <select id="selectSpendKindName" name="SpendKindId">
+                            @{
+                                foreach (var i in new SpendKindDao().GetSpendKinds())
+                                {
+                                    <option value="@i.SpendKindId">@i.Name</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Note: </td>
+                    <td><input type="text" id="txtNote" name="Note"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="error-holder">
+                            <span class="text-danger">@Model.ErrorMessage</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Submit" asp-page-handler="Submit"/></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,61 @@
+﻿@page
+@using SpendingSite.Db
+@model SpendingSite.Pages.MonthSpendingsModel
+@{
+    ViewData["Title"] = "Month Spendings page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Month Spendings</h1>
+</div>
+
+<div class="container">
+    <div class="spending-table-holder">
+        <div class="spending-table">
+
+            @Html.DropDownListFor(
+                m => m.SelectedMonthLocation,
+                GetAvailableMonthes(Model),
+                new { @class="month-dropdown", @onchange = "location = this.value;" })
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Spend</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var selectedMonth = Model.GetSelectedMonth();
+                        decimal total = 0;
+                        int count = 0;
+                        foreach (var r in new SpendingDao().GetMonthSpendings(selectedMonth))
+                        {
+                            total += r.Amount;
+                            count++;
+                            <tr><td>@r.SpendKindName</td><td>@r.Amount &#x20bd;</td></tr>
+                        }
+                        if (count > 1)
+                        {
+                            <tr><td><span class="total-text">Total</span></td><td>@total &#x20bd;</td></tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@{
+    List<SelectListItem> GetAvailableMonthes(SpendingSite.Pages.MonthSpendingsModel model)
+    {
+        return model.AvailableMonthes
+            .Select(x => new SelectListItem
+                {
+                    Text = $"{x.Month:D2}.{x.Year}",
+                    Value = $"MonthSpendings?month={x.Year}{x.Month:D2}"
+                })
+            .ToList();
+    }
+}
