@@ -15,7 +15,7 @@ namespace SpendingSite.Pages
                 ErrorMessage = spending.Validate().FirstOrDefault()?.ErrorMessage;
                 return;
             }
-            new SpendingDao().AddSpending(spending.Amount, spending.SpendKindId, spending.Note, DateTime.Now);
+            new SpendingDao().AddSpending(spending.Amount, spending.SpendKindId, spending.Note, spending.SpendDate);
             ErrorMessage = "Submitted!";
         }
     }

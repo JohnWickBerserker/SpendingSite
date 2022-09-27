@@ -36,6 +36,10 @@
                     <td><input type="text" id="txtNote" name="Note"/></td>
                 </tr>
                 <tr>
+                    <td>Date: </td>
+                    <td><input type="date" id="txtSpendDate" name="SpendDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" /></td>
+                </tr>
+                <tr>
                     <td colspan="2">
                         <div class="error-holder">
                             <span class="text-danger">@Model.ErrorMessage</span>
