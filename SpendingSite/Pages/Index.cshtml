@@ -7,11 +7,17 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Today Spendings</h1>
+    <h1 class="display-4">Day Spendings</h1>
 </div>
 
 <div class="container">
     <div class="spending-table-holder">
+
+        @Html.DropDownListFor(
+            m => m.SelectedDayLocation,
+            GetAvailableDays(Model),
+            new { @class="month-dropdown", @onchange = "location = this.value;" })
+
         <div class="spending-table">
             <table>
                 <thead>
@@ -24,7 +30,7 @@
                     @{
                         decimal total = 0;
                         int count = 0;
-                        foreach (var r in new SpendingDao().GetTodaySpendings())
+                        foreach (var r in new SpendingDao().GetDaySpendings(Model.GetSelectedDay()))
                         {
                             <tr><td>@r.SpendKindName</td><td></td></tr>
                             foreach (var i in r.Items)
@@ -44,3 +50,16 @@
         </div>
     </div>
 </div>
+
+@{
+    List<SelectListItem> GetAvailableDays(SpendingSite.Pages.IndexModel model)
+    {
+        return model.AvailableDays
+            .Select(x => new SelectListItem
+                    {
+                        Text = $"{x:dd.MM.yyyy}",
+                        Value = $"?day={x:dd.MM.yyyy}"
+                    })
+            .ToList();
+    }
+}

@@ -5,11 +5,11 @@ namespace SpendingSite.Db
 {
     public class SpendingDao
     {
-        public List<SpendingGroupDto> GetTodaySpendings()
+        public List<SpendingGroupDto> GetDaySpendings(DateTime date)
         {
             using (var db = new AppDbContext())
             {
-                var queryDate = DateTime.Now.Date.ToUniversalTime();
+                var queryDate = date.ToUniversalTime();
                 var s = db.Spendings
                     .Where(x => x.SpendDate == queryDate)
                     .Select(x => new { x.SpendKind.Name, x.Note, x.Amount })
